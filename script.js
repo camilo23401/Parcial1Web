@@ -1,7 +1,5 @@
 const products = [];
 let favorites = [];
-const toDelete = [];
-const body = document.body;
 const contentTag = document.getElementById("content");
 (async function fetchProducts() {
   const response = await fetch(
@@ -16,7 +14,7 @@ const contentTag = document.getElementById("content");
 })();
 
 function comma(num) {
-  var str = num.toString().split(".");
+  let str = num.toString().split(".");
   if (str[0].length >= 4) {
     str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
   }
@@ -89,7 +87,7 @@ function renderData(data) {
     imgSpace.appendChild(productImg);
     imgSpace.onclick = function () {
       let id;
-      for (j in data) {
+      for (let j in data) {
         if (data[j].picture === productImg.src) {
           id = data[j].id;
         }
@@ -331,7 +329,7 @@ function renderFavs(data) {
     favButton.classList.add("see-product");
     favButton.onclick = function () {
       let id;
-      for (j in data) {
+      for (let j in data) {
         if (data[j].picture === productImg.src) {
           id = data[j].id;
         }
@@ -346,14 +344,12 @@ function renderFavs(data) {
 function makeFavorite(productData) {
   if (!favorites.includes(productData)) {
     favorites.push(productData);
-  } else {
   }
 }
 
 function removeFavorite(productData) {
   if (favorites.includes(productData)) {
     favorites.pop(productData);
-  } else {
   }
 }
 
@@ -375,6 +371,5 @@ document.getElementById("search").onclick = function () {
 };
 
 document.getElementById("btnClosePurchase").onclick = function () {
-  console.log("Clicked");
   content(products, "list", "x");
 };

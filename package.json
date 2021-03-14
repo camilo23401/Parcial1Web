@@ -1,0 +1,23 @@
+{
+  "name": "parcial1web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camilo23401/Parcial1Web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camilo23401/Parcial1Web/issues"
+  },
+  "homepage": "https://github.com/camilo23401/Parcial1Web#readme"
+}
