@@ -286,7 +286,15 @@ body {
   height: 20px;
   width: 20px;
   top: 34px;
-  left: 498px;
+  left: 290px;
+}
+
+.fs-image-fav {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 34px;
+  left: 200px;
 }
 
 .checkFav {
@@ -296,6 +304,7 @@ body {
   margin-bottom: 109px;
   margin-left: 40px;
   margin-right: 40px;
+  background-color: #c4c4c4;
 }
 
 .card-img-fav {
@@ -334,21 +343,118 @@ body {
 }
 
 .see-product {
-
-  background: #C968CB;
+  background: #c968cb;
   border-radius: 20px;
   width: 200px;
   height: 51px;
   margin-right: 48px;
   margin-top: 64px;
   margin-bottom: 100px;
-
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-
   color: #ffffff;
+}
+
+.supBarFav {
+  width: 1240px;
+  height: 89px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.delete-fav-button {
+  background: #c968cb;
+  border-radius: 20px;
+  width: 200px;
+  height: 51px;
+  margin-left: 28px;
+  margin-top: 15px;
+  margin-bottom: 23px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.delete-fav-button:disabled {
+  background: #f7c6f8;
+  border-radius: 20px;
+  width: 200px;
+  height: 51px;
+  margin-left: 28px;
+  margin-top: 15px;
+  margin-bottom: 23px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.checkFavAll {
+  width: 20px;
+  height: 20px;
+  margin-top: 30px;
+  margin-bottom: 39px;
+  margin-left: 40px;
+  background-color: #c4c4c4;
+}
+
+.modal .modal-content {
+  width: 578px;
+  height: 364px;
+  background: #ffffff;
+  border: 1px solid #c6c2c2;
+  box-sizing: border-box;
+}
+
+.modalObject {
+  width: 312px;
+  height: 65px;
+  margin-left: 115px;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-right: 126px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+}
+
+.modalMessage {
+  width: 312px;
+  height: 51px;
+  margin-left: 115px;
+  margin-right: 126px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  margin-top: 30px;
+  color: #000000;
+}
+
+.btnClosePurchase {
+  width: 145px;
+  height: 51px;
+  left: 906px;
+  top: 663px;
+  background: #8c86d7;
+  border-radius: 20px;
+  color: white;
 }

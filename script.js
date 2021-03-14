@@ -1,8 +1,8 @@
 const products = [];
-const favorites = [];
+let favorites = [];
+const toDelete = [];
 const body = document.body;
 const contentTag = document.getElementById("content");
-
 (async function fetchProducts() {
   const response = await fetch(
     "https://gist.githubusercontent.com/jhonatan89/719f8a95a8dce961597f04b3ce37f97b/raw/4b7f1ac723a14b372ba6899ce63dbd7c2679e345/products-ecommerce"
@@ -12,7 +12,7 @@ const contentTag = document.getElementById("content");
   for (let i in productsJson) {
     products.push(productsJson[i]);
   }
-  content(products, "favorites", "Computación");
+  content(products, "list", "x");
 })();
 
 function comma(num) {
@@ -40,6 +40,8 @@ function content(data, type, filter) {
       }
     }
     if (filteredEntries.length === 0) {
+      document.getElementById;
+      contentTag.innerHTML = "";
       const container = document.createElement("h1");
       container.style.maxWidth = "1220px";
       contentTag.append(container);
@@ -62,6 +64,7 @@ function content(data, type, filter) {
 }
 
 function renderData(data) {
+  contentTag.innerHTML = "";
   for (i in data) {
     price = comma(data[i].price.amount);
     product = data[i].title;
@@ -84,6 +87,15 @@ function renderData(data) {
     productImg.classList.add("card-img-list");
     productImg.src = picture;
     imgSpace.appendChild(productImg);
+    imgSpace.onclick = function () {
+      let id;
+      for (j in data) {
+        if (data[j].picture === productImg.src) {
+          id = data[j].id;
+        }
+      }
+      content(data, "detailed", id);
+    };
     const infoSpace = document.createElement("div");
     infoSpace.classList.add("col-7");
     row.appendChild(infoSpace);
@@ -94,7 +106,6 @@ function renderData(data) {
     cardTitle.classList.add("card-text");
     cardBody.appendChild(cardTitle);
     cardTitle.innerText = "$ " + price;
-    console.log(shiping);
     if (shiping === true) {
       const freeShipping = document.createElement("img");
       freeShipping.classList.add("fs-image");
@@ -117,6 +128,7 @@ function renderData(data) {
 }
 
 function renderDetail(productData) {
+  contentTag.innerHTML = "";
   const breadcrumb = document.createElement("div");
   breadcrumb.classList.add("breadcrumb");
   contentTag.appendChild(breadcrumb);
@@ -158,12 +170,23 @@ function renderDetail(productData) {
   buyButton.classList.add("buy-button");
   buyButton.id = "buyButton";
   infoButtonsSpace.appendChild(buyButton);
+  buyButton.dataset.toggle = "modal";
+  buyButton.dataset.target = "#modalPurchase";
   buyButton.innerText = "Comprar";
+  buyButton.onclick = function () {
+    document.getElementById("modalObject").innerText = productData.title;
+  };
   const favButton = document.createElement("button");
   favButton.classList.add("fav-button");
+  favButton.id = "favButton";
   infoButtonsSpace.appendChild(favButton);
-  favButton.innerText = "Añadir a favoritos";
-
+  let pressed = false;
+  if (favorites.includes(productData)) {
+    favButton.innerText = "Quitar de favoritos";
+    pressed = true;
+  } else {
+    favButton.innerText = "Añadir a favoritos";
+  }
   const row2 = document.createElement("div");
   row2.classList.add("row");
   container.appendChild(row2);
@@ -181,9 +204,72 @@ function renderDetail(productData) {
   const empty = document.createElement("div");
   empty.classList.add("col-4");
   row2.appendChild(empty);
+  document.getElementById("favButton").onclick = function () {
+    if (pressed === false) {
+      makeFavorite(productData);
+      favButton.innerText = "Quitar de favoritos";
+      pressed = true;
+    } else {
+      removeFavorite(productData);
+      favButton.innerText = "Añadir a favoritos";
+      pressed = false;
+    }
+  };
 }
 
 function renderFavs(data) {
+  contentTag.innerHTML = "";
+  const container = document.createElement("div");
+  container.classList.add("card");
+  container.classList.add("supBarFav");
+  container.style.maxWidth = "1220px";
+  contentTag.appendChild(container);
+  const row = document.createElement("div");
+  row.classList.add("row");
+  row.classList.add("no-gutters");
+  container.appendChild(row);
+  const checkSpace = document.createElement("div");
+  checkSpace.classList.add("col-1");
+  row.appendChild(checkSpace);
+  const checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
+  checkBox.classList.add("checkFavAll");
+  waschecked = false;
+  checkBox.onclick = function () {
+    if (!waschecked) {
+      favButton.disabled = false;
+      for (i in data) {
+        document.getElementById("cb-" + i).checked = true;
+        waschecked = true;
+      }
+    } else {
+      favButton.disabled = true;
+      for (i in data) {
+        document.getElementById("cb-" + i).checked = false;
+        waschecked = false;
+      }
+    }
+  };
+  checkSpace.appendChild(checkBox);
+  const infoCiudad = document.createElement("div");
+  infoCiudad.classList.add("col-11");
+  row.appendChild(infoCiudad);
+  const favButton = document.createElement("button");
+  favButton.disabled = true;
+  favButton.classList.add("delete-fav-button");
+  favButton.id = "favButton";
+  favButton.onclick = function () {
+    forDeletion = [];
+    for (i in data) {
+      if (document.getElementById("cb-" + i).checked === true) {
+        forDeletion.push(data[i]);
+      }
+    }
+    favorites = favorites.filter((item) => !forDeletion.includes(item));
+    content(favorites, "favorites", "x");
+  };
+  infoCiudad.appendChild(favButton);
+  favButton.innerText = "Eliminar";
   for (i in data) {
     price = comma(data[i].price.amount);
     product = data[i].title;
@@ -204,7 +290,11 @@ function renderFavs(data) {
     row.appendChild(checkSpace);
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
+    checkBox.id = "cb-" + i;
     checkBox.classList.add("checkFav");
+    checkBox.onchange = function () {
+      document.getElementById("favButton").disabled = false;
+    };
     checkSpace.appendChild(checkBox);
     const imgSpace = document.createElement("div");
     imgSpace.classList.add("col-2");
@@ -223,10 +313,9 @@ function renderFavs(data) {
     cardTitle.classList.add("card-text");
     cardBody.appendChild(cardTitle);
     cardTitle.innerText = "$ " + price;
-    console.log(shiping);
     if (shiping === true) {
       const freeShipping = document.createElement("img");
-      freeShipping.classList.add("fs-image");
+      freeShipping.classList.add("fs-image-fav");
       freeShipping.src = "media/freeShipping.png";
       freeShipping.alt = "This item has free shiping";
       cardBody.appendChild(freeShipping);
@@ -240,11 +329,52 @@ function renderFavs(data) {
     row.appendChild(infoCiudad);
     const favButton = document.createElement("button");
     favButton.classList.add("see-product");
+    favButton.onclick = function () {
+      let id;
+      for (j in data) {
+        if (data[j].picture === productImg.src) {
+          id = data[j].id;
+        }
+      }
+      content(data, "detailed", id);
+    };
     infoCiudad.appendChild(favButton);
     favButton.innerText = "Ver artículo";
   }
 }
 
 function makeFavorite(productData) {
-  favorites.push(productData);
+  if (!favorites.includes(productData)) {
+    favorites.push(productData);
+  } else {
+  }
 }
+
+function removeFavorite(productData) {
+  if (favorites.includes(productData)) {
+    favorites.pop(productData);
+  } else {
+  }
+}
+
+document.getElementById("favIcon").onclick = function () {
+  content(favorites, "favorites", "x");
+};
+
+document.getElementById("homeLogo").onclick = function () {
+  content(products, "list", "x");
+};
+
+document.getElementById("search").onclick = function () {
+  content(
+    products,
+    "filtered",
+    document.getElementById("filterparameter").value
+  );
+  document.getElementById("filterparameter").value = "";
+};
+
+document.getElementById("btnClosePurchase").onclick = function () {
+  console.log("Clicked");
+  content(products, "list", "x");
+};
