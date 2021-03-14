@@ -7,7 +7,7 @@ body {
   width: 1440px;
   height: 80px;
   left: 0px;
-  top: 2px;
+  top: 3px;
 
   background: linear-gradient(
     270deg,
@@ -23,7 +23,7 @@ body {
   width: 100px;
   height: 60px;
   left: 100px;
-  top: 10px;
+  top: 8px;
   mix-blend-mode: normal;
   border-radius: 2px;
 }
@@ -33,7 +33,7 @@ body {
   width: 892px;
   height: 47px;
   left: 448px;
-  top: 20px;
+  top: 18px;
 
   background: #ffffff;
 }
@@ -80,35 +80,38 @@ body {
   width: 44px;
   height: 40px;
   left: 1375px;
-  top: 20px;
+  top: 18px;
+  bottom: 22px;
 }
 
 .main {
   position: absolute;
-  top: 159px;
+  top: 83px;
   left: 100px;
 }
 
-.breadcrumb {
-  position: absolute;
+.breadcrumbp {
   width: 520px;
   height: 32px;
+  margin-top: 31px;
+  margin-bottom: 12px;
 }
 
-.breadcrumb p {
+.breadcrumbp p {
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   text-align: justify;
+  color: rgba(0, 0, 0, 0.67);
 }
 
 .container-detail {
   position: absolute;
   width: 1240px;
-  height: 852px;
-  top: 76px;
+  height: auto;
+  top: 70px;
 
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -347,7 +350,7 @@ body {
   border-radius: 20px;
   width: 200px;
   height: 51px;
-  margin-right: 48px;
+  margin-left: 65px;
   margin-top: 64px;
   margin-bottom: 100px;
   font-family: Lato;
@@ -456,5 +459,31 @@ body {
   top: 663px;
   background: #8c86d7;
   border-radius: 20px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
   color: white;
+}
+
+.favoritesID {
+  width: 312px;
+  height: 31px;
+  left: 100px;
+  margin-top: 25px;
+  margin-bottom: 28px;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 34px;
+
+  color: #000000;
+}
+
+.auxiliar {
+  margin-top: 77px;
 }

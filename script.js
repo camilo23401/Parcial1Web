@@ -63,6 +63,9 @@ function content(data, type, filter) {
 
 function renderData(data) {
   contentTag.innerHTML = "";
+  const containerAux = document.createElement("div")
+  containerAux.classList.add("auxiliar");
+  contentTag.append(containerAux);
   for (i in data) {
     price = comma(data[i].price.amount);
     product = data[i].title;
@@ -73,7 +76,7 @@ function renderData(data) {
     container.classList.add("card");
     container.classList.add("mb-3");
     container.style.maxWidth = "1220px";
-    contentTag.append(container);
+    containerAux.append(container);
     const row = document.createElement("div");
     row.classList.add("row");
     row.classList.add("no-gutters");
@@ -128,7 +131,7 @@ function renderData(data) {
 function renderDetail(productData) {
   contentTag.innerHTML = "";
   const breadcrumb = document.createElement("div");
-  breadcrumb.classList.add("breadcrumb");
+  breadcrumb.classList.add("breadcrumbp");
   contentTag.appendChild(breadcrumb);
   const breadcrumbContent = document.createElement("p");
   breadcrumb.appendChild(breadcrumbContent);
@@ -217,6 +220,10 @@ function renderDetail(productData) {
 
 function renderFavs(data) {
   contentTag.innerHTML = "";
+  const title = document.createElement("h3");
+  title.classList.add("favoritesID");
+  title.innerText="Favoritos";
+  contentTag.appendChild(title);
   const container = document.createElement("div");
   container.classList.add("card");
   container.classList.add("supBarFav");
