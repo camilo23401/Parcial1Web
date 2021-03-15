@@ -63,7 +63,7 @@ function content(data, type, filter) {
 
 function renderData(data) {
   contentTag.innerHTML = "";
-  const containerAux = document.createElement("div")
+  const containerAux = document.createElement("div");
   containerAux.classList.add("auxiliar");
   contentTag.append(containerAux);
   for (i in data) {
@@ -87,6 +87,7 @@ function renderData(data) {
     const productImg = document.createElement("img");
     productImg.classList.add("card-img-list");
     productImg.src = picture;
+    productImg.alt = "Imagen del producto" + product;
     imgSpace.appendChild(productImg);
     imgSpace.onclick = function () {
       let id;
@@ -150,6 +151,7 @@ function renderDetail(productData) {
   const imgDetail = document.createElement("img");
   imgDetail.classList.add("image-detail");
   imgDetail.src = productData.picture;
+  imgDetail.alt = "Imagen del producto detallado";
   productImgSpace.appendChild(imgDetail);
   const infoButtonsSpace = document.createElement("div");
   infoButtonsSpace.classList.add("col-4");
@@ -307,6 +309,7 @@ function renderFavs(data) {
     const productImg = document.createElement("img");
     productImg.classList.add("card-img-fav");
     productImg.src = picture;
+    productImg.alt = "Imagen del producto" + product;
     imgSpace.appendChild(productImg);
     const infoSpace = document.createElement("div");
     infoSpace.classList.add("col-6");
